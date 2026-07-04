@@ -70,8 +70,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
         (new AddNameToConversationsTable)->up();
         (new AddArchivedAtToParticipationTable)->up();
         (new CreateTestTables)->up();
-
-        // $this->withFactories(__DIR__ . '/Helpers/factories');
     }
 
     /**
