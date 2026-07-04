@@ -8,6 +8,8 @@ use Musonza\Chat\Models\Participation;
 use Musonza\Chat\Tests\Helpers\Models\Client;
 use Musonza\Chat\Tests\Helpers\Models\User;
 use Musonza\Chat\Tests\TestCase;
+use Musonza\Chat\Tests\Helpers\Models\Conversation as TestConversation;
+
 
 class ConversationParticipationControllerTest extends TestCase
 {
@@ -20,9 +22,9 @@ class ConversationParticipationControllerTest extends TestCase
 
     public function test_store()
     {
-        $conversation = factory(Conversation::class)->create();
-        $userModel    = factory(User::class)->create();
-        $clientModel  = factory(Client::class)->create();
+        $conversation = TestConversation::factory()->create();
+        $userModel    = User::factory()->create();
+        $clientModel  = Client::factory()->create();
         $payload      = [
             'participants' => [
                 ['id' => $userModel->getKey(), 'type' => $userModel->getMorphClass()],
@@ -38,9 +40,9 @@ class ConversationParticipationControllerTest extends TestCase
 
     public function test_index()
     {
-        $conversation = factory(Conversation::class)->create();
-        $userModel    = factory(User::class)->create();
-        $clientModel  = factory(Client::class)->create();
+        $conversation = TestConversation::factory()->create();
+        $userModel    = User::factory()->create();
+        $clientModel  = Client::factory()->create();
 
         Chat::conversation($conversation)->addParticipants([$userModel, $clientModel]);
 
@@ -51,8 +53,8 @@ class ConversationParticipationControllerTest extends TestCase
 
     public function test_show()
     {
-        $conversation = factory(Conversation::class)->create();
-        $userModel    = factory(User::class)->create();
+        $conversation = TestConversation::factory()->create();
+        $userModel    = User::factory()->create();
         Chat::conversation($conversation)->addParticipants([$userModel]);
 
         /** @var Participation $participant */
@@ -67,9 +69,9 @@ class ConversationParticipationControllerTest extends TestCase
 
     public function test_destroy()
     {
-        $conversation = factory(Conversation::class)->create();
-        $userModel    = factory(User::class)->create();
-        $clientModel  = factory(Client::class)->create();
+        $conversation = TestConversation::factory()->create();
+        $userModel    = User::factory()->create();
+        $clientModel  = Client::factory()->create();
 
         Chat::conversation($conversation)->addParticipants([$userModel, $clientModel]);
 
@@ -85,9 +87,9 @@ class ConversationParticipationControllerTest extends TestCase
 
     public function test_update()
     {
-        $conversation = factory(Conversation::class)->create();
-        $userModel    = factory(User::class)->create();
-        $clientModel  = factory(Client::class)->create();
+        $conversation = TestConversation::factory()->create();
+        $userModel    = User::factory()->create();
+        $clientModel  = Client::factory()->create();
 
         Chat::conversation($conversation)->addParticipants([$userModel, $clientModel]);
 

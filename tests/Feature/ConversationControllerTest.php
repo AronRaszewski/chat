@@ -10,6 +10,8 @@ use Musonza\Chat\Tests\Helpers\Models\Client;
 use Musonza\Chat\Tests\Helpers\Models\User;
 use Musonza\Chat\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Musonza\Chat\Tests\Helpers\Models\Conversation as TestConversation;
+
 
 class ConversationControllerTest extends TestCase
 {
@@ -25,9 +27,9 @@ class ConversationControllerTest extends TestCase
         $this->withoutExceptionHandling();
 
         /** @var User $userModel */
-        $userModel   = factory(User::class)->create();
-        $clientModel = factory(Client::class)->create();
-        $botModel    = factory(Bot::class)->create();
+        $userModel   = User::factory()->create();
+        $clientModel = Client::factory()->create();
+        $botModel    = Bot::factory()->create();
 
         $participants = [
             ['id' => $userModel->getKey(), 'type' => $userModel->getMorphClass()],
@@ -59,7 +61,7 @@ class ConversationControllerTest extends TestCase
 
     public function test_show()
     {
-        $conversation = factory(Conversation::class)->create();
+        $conversation = TestConversation::factory()->create();
 
         $this->getJson(route('conversations.show', $conversation->getKey()))
             ->assertStatus(200)
@@ -70,7 +72,7 @@ class ConversationControllerTest extends TestCase
 
     public function test_update()
     {
-        $conversation = factory(Conversation::class)->create();
+        $conversation = TestConversation::factory()->create();
 
         $payload = ['data' => ['title' => 'New Title']];
 
@@ -83,7 +85,7 @@ class ConversationControllerTest extends TestCase
 
     public function test_destroy()
     {
-        $conversation = factory(Conversation::class)->create();
+        $conversation = TestConversation::factory()->create();
 
         $this->deleteJson(route('conversations.destroy', $conversation->getKey()))
             ->assertStatus(200);
@@ -91,9 +93,9 @@ class ConversationControllerTest extends TestCase
 
     public function test_destroy_with_participants()
     {
-        $conversation = factory(Conversation::class)->create();
+        $conversation = TestConversation::factory()->create();
 
-        Chat::conversation($conversation)->addParticipants([factory(User::class)->create()]);
+        Chat::conversation($conversation)->addParticipants([User::factory()->create()]);
 
         $this->deleteJson(route('conversations.destroy', $conversation->getKey()))
             ->assertStatus(Response::HTTP_FORBIDDEN);

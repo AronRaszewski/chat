@@ -71,7 +71,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         (new AddArchivedAtToParticipationTable)->up();
         (new CreateTestTables)->up();
 
-        $this->withFactories(__DIR__ . '/Helpers/factories');
+        // $this->withFactories(__DIR__ . '/Helpers/factories');
     }
 
     /**
@@ -117,7 +117,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     public function createUsers($count = 1)
     {
-        return factory(User::class, $count)->create();
+        return User::factory($count)->create();
     }
 
     protected function tearDown(): void
