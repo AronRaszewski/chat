@@ -3,13 +3,11 @@
 namespace Musonza\Chat\Tests\Feature;
 
 use Chat;
-use Musonza\Chat\Models\Conversation;
 use Musonza\Chat\Models\Participation;
 use Musonza\Chat\Tests\Helpers\Models\Client;
+use Musonza\Chat\Tests\Helpers\Models\Conversation as TestConversation;
 use Musonza\Chat\Tests\Helpers\Models\User;
 use Musonza\Chat\Tests\TestCase;
-use Musonza\Chat\Tests\Helpers\Models\Conversation as TestConversation;
-
 
 class ConversationParticipationControllerTest extends TestCase
 {

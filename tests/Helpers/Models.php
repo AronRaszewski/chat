@@ -2,13 +2,12 @@
 
 namespace Musonza\Chat\Tests\Helpers\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
-use Musonza\Chat\Traits\Messageable;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Musonza\Chat\Models\Conversation as BaseConversation;
-
+use Musonza\Chat\Traits\Messageable;
 
 #[UseFactory(UserFactory::class)]
 class User extends Model
@@ -65,14 +64,13 @@ class UserFactory extends Factory
         static $password;
 
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => $password ?: $password = bcrypt('secret'),
+            'name'           => fake()->name(),
+            'email'          => fake()->unique()->safeEmail(),
+            'password'       => $password ?: $password = bcrypt('secret'),
             'remember_token' => 'xahja87ahjahajhajhja',
         ];
     }
 }
-
 
 class ClientFactory extends Factory
 {

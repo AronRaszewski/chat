@@ -5,9 +5,8 @@ namespace Musonza\Chat\Tests\Feature;
 use Chat;
 use Musonza\Chat\Models\Message;
 use Musonza\Chat\Tests\Helpers\Models\Client;
-use Musonza\Chat\Tests\Helpers\Models\User;
 use Musonza\Chat\Tests\Helpers\Models\Conversation;
-
+use Musonza\Chat\Tests\Helpers\Models\User;
 use Musonza\Chat\Tests\TestCase;
 
 class ConversationMessageControllerTest extends TestCase
